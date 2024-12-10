@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask WebSocket Example</title>
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"></script>
+</head>
+<body>
+    <h1>Flask WebSocket Example</h1>
+    <p>Status: <span id="status">Disconnected</span></p>
+    <input type="text" id="messageInput" placeholder="Type a message">
+    <button onclick="sendMessage()">Send Message</button>
+    <h2>Messages:</h2>
+    <div id="messages"></div>
+
+    <script>
+        // Connect to the WebSocket server
+        const socket = io.connect('http://localhost:5000');
+
+        const statusElement = document.getElementById('status');
+        const messagesDiv = document.getElementById('messages');
+        const messageInput = document.getElementById('messageInput');
+
+        // Event: Connection established
+        socket.on('connect', () => {
+            statusElement.textContent = 'Connected';
+            console.log('Connected to WebSocket server');
+        });
+
+        // Event: Message from server
+        socket.on('message', (data) => {
+            console.log('Message from server:', data.data);
+            const messageElement = document.createElement('p');
+            messageElement.textContent = `Server: ${data.data}`;
+            messagesDiv.appendChild(messageElement);
+        });
+
+        // Event: Custom response from server
+        socket.on('response', (data) => {
+            console.log('Response from server:', data.data);
+            const messageElement = document.createElement('p');
+            messageElement.textContent = `Server: ${data.data}`;
+            messagesDiv.appendChild(messageElement);
+        });
+
+        // Event: Connection closed
+        socket.on('disconnect', () => {
+            statusElement.textContent = 'Disconnected';
+            console.log('Disconnected from WebSocket server');
+        });
+
+        // Function: Send a message to the server
+        function sendMessage() {
+            const message = messageInput.value;
+            if (message) {
+                socket.emit('send_message', { message: message });
+                const messageElement = document.createElement('p');
+                messageElement.textContent = `You: ${message}`;
+                messagesDiv.appendChild(messageElement);
+                messageInput.value = '';
+            } else {
+                alert('Please enter a message');
+            }
+        }
+    </script>
+</body>
+</html>
