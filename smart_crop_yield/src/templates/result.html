@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% block title %}Prediction Result{% endblock %}
+{% block content %}
+
+<style>
+  .result-box {
+    background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+    padding: 50px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 12px 30px rgba(76, 175, 80, 0.2);
+    max-width: 800px;
+    margin: 50px auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    animation: fadeIn 1.2s ease-in-out;
+    border: 1px solid #c8e6c9;
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0; transform: translateY(30px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  .result-box h2 {
+    color: #2e7d32;
+    font-weight: 900;
+    font-size: 2.4rem;
+    margin-bottom: 10px;
+  }
+
+  .result-box h3 {
+    font-weight: 600;
+    font-size: 1.4rem;
+    color: #555;
+    margin-bottom: 20px;
+  }
+
+  .result-box h1 {
+    font-size: 3.2rem;
+    font-weight: bold;
+    color: #43a047;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+  }
+
+  .result-box p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 30px;
+    padding: 0 20px;
+  }
+
+  .result-box ul {
+    text-align: left;
+    max-width: 500px;
+    margin: 0 auto 30px;
+    padding-left: 0;
+  }
+
+  .result-box li {
+    background: #f1f8e9;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: #444;
+    border-left: 6px solid #66bb6a;
+    list-style: none;
+    transition: transform 0.2s ease;
+  }
+
+  .result-box li:hover {
+    transform: scale(1.01);
+    background-color: #e6f2dc;
+  }
+
+  .result-box small {
+    color: #777;
+    font-style: italic;
+  }
+
+  .result-box .btn {
+    padding: 12px 30px;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 30px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 15px rgba(76, 175, 80, 0.3);
+  }
+
+  .result-box .btn:hover {
+    background-color: #388e3c;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(76, 175, 80, 0.4);
+  }
+
+  @media (max-width: 768px) {
+    .result-box {
+      padding: 30px;
+    }
+
+    .result-box h1 {
+      font-size: 2.2rem;
+    }
+
+    .result-box ul {
+      padding: 0 10px;
+    }
+  }
+</style>
+
+<div class="result-box">
+  <h2>🌾 Prediction Result</h2>
+  <h3>Your recommended crop:</h3>
+  <h1 class="display-4">{{ crop.name }}</h1>
+
+  <p class="mt-4">
+    {{ crop.description }}
+  </p>
+
+  <h5 class="mt-4">🌱 Ideal Requirements</h5>
+  <ul>
+    {% for key, value in crop.requirements.items() %}
+      <li><strong>{{ key }}:</strong> {{ value }}</li>
+    {% endfor %}
+  </ul>
+
+  <small class="text-muted">Generated at {{ timestamp }}</small>
+  <br>
+  <a href="{{ url_for('predict') }}" class="btn mt-4">🔄 Predict Another Crop</a>
+</div>
+
+{% endblock %}

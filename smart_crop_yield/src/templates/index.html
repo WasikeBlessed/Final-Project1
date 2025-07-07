@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<style>
+  .dashboard {
+    background: linear-gradient(135deg, #e8f5e9, #ffffff);
+    padding: 50px 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 128, 0, 0.15);
+    max-width: 1100px;
+    margin: 30px auto;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+  }
+  .dashboard h1 {
+    color: #2e7d32;
+    font-weight: 800;
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .dashboard .lead {
+    color: #555;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+  }
+  .stats-card {
+    background: #f9fbe7;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 15px 0;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .stats-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  }
+  .stats-card h4 {
+    color: #4caf50;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+  .stats-card p {
+    color: #666;
+    font-size: 1.1rem;
+  }
+  .weather-widget {
+    background: #e0f2f1;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    text-align: center;
+    color: #004d40;
+    font-style: italic;
+  }
+  .btn-dashboard {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+    margin-top: 20px;
+  }
+  .btn-dashboard:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+  }
+  @media (max-width: 768px) {
+    .dashboard {
+      padding: 20px;
+    }
+    .dashboard h1 {
+      font-size: 2.2rem;
+    }
+    .dashboard .lead {
+      font-size: 1rem;
+    }
+  }
+</style>
+
+<div class="dashboard">
+  <h1 class="text-success">Welcome, {{ name }} 🌱</h1>
+  <p class="lead">Unlock the power of AI to optimize your farm's crop yield with real-time insights and personalized recommendations.</p>
+
+  <!-- Farm Statistics -->
+  <div class="row">
+    <div class="col-md-4">
+      <div class="stats-card">
+        <h4>Total Predictions</h4>
+        <p>12</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="stats-card">
+        <h4>Successful Harvests</h4>
+        <p>8</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="stats-card">
+        <h4>Avg Yield (kg/ha)</h4>
+        <p>450</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Weather Widget Placeholder -->
+  <div class="weather-widget">
+    [Weather Widget: Current conditions at 05:29 PM EAT on July 05, 2025 - 25°C, 70% Humidity]
+  </div>
+
+  <!-- Call to Action -->
+  <div class="text-center">
+    <a href="{{ url_for('predict') }}" class="btn-dashboard">Start Predicting Now</a>
+    <p class="mt-2 text-muted">Take control of your farm’s future with Smart Crop!</p>
+  </div>
+</div>
+{% endblock %}

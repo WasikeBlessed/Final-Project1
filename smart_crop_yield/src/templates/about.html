@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% block title %}About Us{% endblock %}
+{% block content %}
+<style>
+  .about {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 128, 0, 0.15);
+    max-width: 1000px;
+    margin: 30px auto;
+    font-family: 'Arial', sans-serif;
+  }
+  .about h3 {
+    color: #2e7d32;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .about p {
+    color: #555;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  .section-title {
+    color: #4caf50;
+    font-weight: 700;
+    margin-top: 30px;
+    border-bottom: 2px solid #4caf50;
+    padding-bottom: 5px;
+    display: inline-block;
+  }
+  .mission-box {
+    background: #e8f5e9;
+    border-left: 6px solid #2e7d32;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+  }
+  .team-card {
+    background: #f9fbe7;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  }
+  .team-card h5 {
+    color: #2e7d32;
+    margin-bottom: 5px;
+  }
+  .team-card p {
+    color: #666;
+    font-size: 0.9rem;
+  }
+  .btn-world-class {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-block;
+    margin-top: 20px;
+  }
+  .btn-world-class:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+  }
+  @media (max-width: 768px) {
+    .about {
+      padding: 20px;
+    }
+    .about h3 {
+      font-size: 2rem;
+    }
+    .about p {
+      font-size: 1rem;
+    }
+  }
+</style>
+
+<div class="about">
+  <h3 class="text-success">About Smart Crop</h3>
+
+  <!-- Introduction -->
+  <p>Welcome to <strong>Smart Crop</strong>, a revolutionary platform designed to empower farmers worldwide with cutting-edge artificial intelligence. Our system analyzes real-time environmental data—such as soil nutrients (Nitrogen, Phosphorus, Potassium), temperature, humidity, pH, and rainfall—to recommend the most suitable crops for your land. By leveraging advanced machine learning, we help optimize yields, reduce resource waste, and promote sustainable agriculture.</p>
+
+  <!-- Mission Statement -->
+  <div class="mission-box">
+    <h4 class="section-title">Our Mission</h4>
+    <p>To transform global agriculture by providing farmers with accessible, data-driven insights, fostering food security, and supporting eco-friendly farming practices for a greener future.</p>
+  </div>
+
+  <!-- What We Offer -->
+  <h4 class="section-title">What Sets Us Apart</h4>
+  <ul style="list-style-type: disc; padding-left: 20px;">
+    <li><strong>Precision Agriculture:</strong> Tailored crop recommendations based on your local conditions.</li>
+    <li><strong>Real-Time Insights:</strong> Instant predictions with detailed requirements and care tips.</li>
+    <li><strong>Sustainability Focus:</strong> Encourages efficient use of water, fertilizers, and land.</li>
+    <li><strong>User-Friendly Design:</strong> Intuitive interface for farmers of all tech levels.</li>
+  </ul>
+
+  <!-- Team Section -->
+  <h4 class="section-title">Meet Our Team</h4>
+  <div class="row">
+    <div class="team-card">
+      <h5>Dr. Amina Kariuki</h5>
+      <p>Lead AI Researcher</p>
+    </div>
+    <div class="team-card">
+      <h5>John Mwangi</h5>
+      <p>Agricultural Expert</p>
+    </div>
+    <div class="team-card">
+      <h5>Sarah Omondi</h5>
+      <p>Software Developer</p>
+    </div>
+  </div>
+  <p class="text-muted">Our diverse team combines expertise in AI, agronomy, and technology to bring you the best tools for farming success.</p>
+
+  <!-- Call to Action -->
+  <div class="text-center">
+    <a href="{{ url_for('predict') }}" class="btn-world-class">Get Started Today</a>
+    <p class="mt-2 text-muted">Join thousands of farmers improving their yields with Smart Crop!</p>
+  </div>
+</div>
+{% endblock %}

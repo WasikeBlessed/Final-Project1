@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% block title %}Guide{% endblock %}
+{% block content %}
+<style>
+  .guide {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 128, 0, 0.1);
+    max-width: 900px;
+    margin: 20px auto;
+  }
+  .guide h3 {
+    color: #2e7d32;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .guide ol, .guide ul {
+    padding-left: 20px;
+  }
+  .guide li {
+    margin-bottom: 15px;
+    color: #333;
+    line-height: 1.6;
+  }
+  .tip-box {
+    background: #e8f5e9;
+    border-left: 4px solid #4caf50;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 5px;
+  }
+  .tip-box h4 {
+    color: #2e7d32;
+    margin-top: 0;
+  }
+  .highlight {
+    color: #d32f2f;
+    font-weight: 600;
+  }
+  .btn-custom {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  .btn-custom:hover {
+    background-color: #45a049;
+  }
+</style>
+
+<div class="guide">
+  <h3 class="text-success">Master the Smart Crop System: Your Ultimate Guide</h3>
+
+  <!-- Step-by-Step Instructions -->
+  <h4 class="mt-4">Getting Started</h4>
+  <ol class="mt-3">
+    <li><strong>Access the Predict Tool:</strong> Click on <span class="highlight">Predict</span> from the top menu to begin.</li>
+    <li><strong>Enter Data:</strong> Input accurate soil and climate details (Nitrogen, Phosphorus, Potassium, Temperature, Humidity, pH, Rainfall) based on your farm's conditions.</li>
+    <li><strong>Submit Prediction:</strong> Hit the <span class="highlight">Predict Crop</span> button to receive your recommendation.</li>
+    <li><strong>Review Results:</strong> Explore the recommended crop, its requirements, and detailed insights on the results page.</li>
+  </ol>
+
+  <!-- Tips and Best Practices -->
+  <div class="tip-box">
+    <h4>Expert Tips for Success</h4>
+    <ul>
+      <li><strong>Accurate Data is Key:</strong> Use soil test kits or local weather data for precise inputs to get the best recommendations.</li>
+      <li><strong>Seasonal Timing:</strong> Plant crops according to the recommended season for optimal yield (e.g., Rice in monsoon, Wheat in winter).</li>
+      <li><strong>Soil Preparation:</strong> Prepare your soil based on the crop's pH and nutrient needs before planting.</li>
+      <li><strong>Monitor Growth:</strong> Regularly check crop health and adjust irrigation or fertilizers as suggested in the guide.</li>
+    </ul>
+  </div>
+
+  <!-- Crop Management -->
+  <h4 class="mt-4">Crop Management Essentials</h4>
+  <p>Once you receive your crop recommendation, follow these steps to maximize your harvest:</p>
+  <ul>
+    <li><strong>Irrigation:</strong> Ensure water levels match the crop's needs (e.g., flooding for Rice, moderate for Wheat).</li>
+    <li><strong>Fertilization:</strong> Apply fertilizers based on the predicted nutrient requirements to avoid over- or under-feeding.</li>
+    <li><strong>Pest Control:</strong> Use organic or chemical methods to protect your crops from common pests and diseases.</li>
+    <li><strong>Harvesting:</strong> Harvest at the right time to ensure quality and quantity, as guided by local agricultural calendars.</li>
+  </ul>
+
+  <!-- Visual Aid Description -->
+  <h4 class="mt-4">Visualizing Your Farm</h4>
+  <p>Imagine a lush field with your recommended crop thriving! Picture rows of green Rice paddies reflecting the sun or golden Wheat swaying in the breeze. Use the prediction data to plan your field layout, ensuring proper spacing and sunlight exposure for the best growth.</p>
+
+  <!-- Call to Action -->
+  <div class="text-center mt-4">
+    <a href="{{ url_for('predict') }}" class="btn-custom">Start Predicting Now</a>
+    <p class="mt-2 text-muted">Unlock the full potential of your farm with Smart Crop!</p>
+  </div>
+</div>
+{% endblock %}

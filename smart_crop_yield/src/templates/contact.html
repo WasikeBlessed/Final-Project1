@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+{% block title %}Contact Us{% endblock %}
+{% block content %}
+
+<!-- Styles -->
+<style>
+  .contact-wrapper {
+    max-width: 800px;
+    margin: 30px auto;
+    font-family: 'Arial', sans-serif;
+  }
+
+  #map {
+    height: 300px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 128, 0, 0.1);
+    margin-bottom: 30px;
+  }
+
+  .contact-form {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 128, 0, 0.15);
+  }
+
+  .contact-form h3 {
+    color: #2e7d32;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 2.3rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .contact-form label {
+    font-weight: 600;
+    color: #555;
+  }
+
+  .contact-form .form-control {
+    border-radius: 8px;
+    border-color: #c8e6c9;
+    transition: border-color 0.3s ease;
+  }
+
+  .contact-form .form-control:focus {
+    border-color: #4caf50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+  }
+
+  .contact-form textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .btn-contact {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 12px;
+    border-radius: 25px;
+    font-weight: 600;
+    width: 100%;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .btn-contact:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+  }
+
+  .contact-info {
+    background: #e8f5e9;
+    padding: 20px;
+    border-left: 6px solid #2e7d32;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .contact-info p {
+    margin: 5px 0;
+    color: #333;
+  }
+
+  .success-message {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    margin-top: 20px;
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .contact-form {
+      padding: 20px;
+    }
+
+    .contact-form h3 {
+      font-size: 1.8rem;
+    }
+  }
+</style>
+
+<div class="contact-wrapper">
+
+  <!-- Map Container -->
+  <div id="map"></div>
+
+  <!-- Contact Form -->
+  <div class="contact-form">
+    <h3 class="text-success">Contact Us</h3>
+
+    <!-- Success Message -->
+    <div class="success-message" id="successMessage">
+      Thank you for reaching out! We will get back to you soon at your email.
+    </div>
+
+    <form method="POST" id="contactForm">
+      <div class="mb-3">
+        <label for="name">Your Full Name</label>
+        <input type="text" name="name" id="name" class="form-control" required placeholder="Enter your name">
+      </div>
+      <div class="mb-3">
+        <label for="email">Email Address</label>
+        <input type="email" name="email" id="email" class="form-control" required placeholder="Enter your email">
+      </div>
+      <div class="mb-3">
+        <label for="message">Your Message</label>
+        <textarea name="message" id="message" class="form-control" rows="4" required placeholder="Type your message here"></textarea>
+      </div>
+      <button type="submit" class="btn-contact">Send Message</button>
+    </form>
+
+    <!-- Contact Info -->
+    <div class="contact-info">
+      <h5>Contact Details</h5>
+      <p><strong>Email:</strong> support@smartcrop.com</p>
+      <p><strong>Phone:</strong> +254 723481025</p>
+      <p><strong>Address:</strong> Nakuru, Kenya</p>
+    </div>
+  </div>
+</div>
+
+<!-- Leaflet Assets -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<!-- JavaScript -->
+<script>
+  // Form handler (simulated submission)
+  document.getElementById('contactForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    document.getElementById('successMessage').style.display = 'block';
+    document.getElementById('contactForm').style.display = 'none';
+  });
+
+  // Initialize map
+  var map = L.map('map').setView([-1.286389, 36.817223], 13); // Default to Nairobi
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(map);
+
+  // Attempt geolocation
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      var userLat = position.coords.latitude;
+      var userLng = position.coords.longitude;
+      map.setView([userLat, userLng], 14);
+      L.marker([userLat, userLng]).addTo(map)
+        .bindPopup("📍 Find us Here")
+        .openPopup();
+    }, function () {
+      console.warn("Geolocation failed. Showing default map.");
+    });
+  } else {
+    alert("Geolocation is not supported in your browser.");
+  }
+</script>
+
+{% endblock %}

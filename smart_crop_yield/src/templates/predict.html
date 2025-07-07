@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Predict Crop{% endblock %}
+{% block content %}
+<style>
+  .predict-form {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 800px;
+    margin: auto;
+    box-shadow: 0 4px 12px rgba(0,128,0,0.1);
+  }
+</style>
+
+<div class="predict-form">
+  <h3 class="text-success mb-4">Enter Environmental Data</h3>
+  <form method="POST" action="{{ url_for('predict') }}">
+    <div class="row">
+      {% for label, name in [('Nitrogen', 'nitrogen'), ('Phosphorus', 'phosphorus'), ('Potassium', 'potassium'),
+                             ('Temperature (°C)', 'temperature'), ('Humidity (%)', 'humidity'),
+                             ('pH Level', 'ph'), ('Rainfall (mm)', 'rainfall')] %}
+      <div class="col-md-6 mb-3">
+        <label>{{ label }}</label>
+        <input type="number" name="{{ name }}" step="any" class="form-control" required>
+      </div>
+      {% endfor %}
+    </div>
+    <button type="submit" class="btn btn-success w-100 mt-3">Predict Crop</button>
+  </form>
+</div>
+{% endblock %}
